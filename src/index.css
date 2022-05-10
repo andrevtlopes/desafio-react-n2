@@ -1,3 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tab {
+ @apply rounded-t-lg px-4 hover:bg-slate-300 cursor-pointer py-1;
+}
+
+.tab-active {
+  @apply bg-slate-200 hover:bg-slate-200;
+ }
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
