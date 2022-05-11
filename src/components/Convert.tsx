@@ -44,7 +44,7 @@ function Convert({ unit, measures }: Props) {
         if (list) return;
 
         storage.init(unit.name, []);
-    }, []);
+    }, [storage, unit.name]);
 
     return (
         <div className='flex flex-col items-end gap-3'>
