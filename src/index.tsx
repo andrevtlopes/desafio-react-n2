@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import tabs, { MeasureTab } from './types/tabs';
 import TabPanel from './components/TabPanel';
+import NoMatch from './components/NoMatch';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -22,6 +23,7 @@ root.render(
                             element={<TabPanel value={value as MeasureTab} />}
                         />
                     ))}
+                    <Route path='*' element={<NoMatch />} />
                 </Route>
             </Routes>
         </BrowserRouter>
