@@ -1,46 +1,23 @@
 import Container from './components/Container';
-import Convert from './components/Convert';
 import Header from './components/Header';
-import History from './components/History';
-import useLocalStorage, { StorageContext } from './hooks/useLocalStorage';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { Outlet } from 'react-router-dom';
 import tabs from './types/tabs';
+import Tab from './components/Tab';
 
 function App() {
-    const storage = useLocalStorage('local');
-
     return (
         <div className='h-full min-h-screen bg-slate-500 align-center'>
             <Header title='Ferramenta de Conversão de Unidades de Medida' />
             <Container>
-                <Tabs>
-                    <TabList className='flex justify-center'>
-                        {Object.values(tabs).map((tab, idx) => (
-                            <Tab
-                                key={idx}
-                                className='tab'
-                                selectedClassName='tab-active'
-                            >
-                                <tab.icon></tab.icon>
-                                {tab.unit.name}
-                            </Tab>
-                        ))}
-                    </TabList>
-                    {Object.values(tabs).map((tab, idx) => (
-                        <TabPanel key={idx}>
-                            <StorageContext.Provider value={storage}>
-                                <Convert
-                                    unit={tab.unit}
-                                    measures={tab.measures}
-                                />
-                                <History
-                                    unit={tab.unit}
-                                    measures={tab.measures}
-                                />
-                            </StorageContext.Provider>
-                        </TabPanel>
+                <div className='flex justify-center'>
+                    {Object.entries(tabs).map(([key, value], idx) => (
+                        <Tab to={key} key={idx}>
+                            <value.icon />
+                            {value.unit.name}
+                        </Tab>
                     ))}
-                </Tabs>
+                </div>
+                <Outlet />
             </Container>
         </div>
     );
