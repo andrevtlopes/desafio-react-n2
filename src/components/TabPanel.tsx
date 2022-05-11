@@ -13,7 +13,7 @@ export default function TabPanel({ value }: Props) {
     return (
         <StorageContext.Provider value={storage}>
             <div className='tab-panel'>
-                <Convert unit={value.unit} measures={value.measures} />
+                <Convert key={value.unit.symbol} unit={value.unit} measures={value.measures} />
                 <History unit={value.unit} measures={value.measures} />
             </div>
         </StorageContext.Provider>

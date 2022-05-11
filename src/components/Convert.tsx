@@ -11,18 +11,16 @@ type Props = {
 };
 
 function Convert({ unit, measures }: Props) {
-    const input = useRef<HTMLInputElement>(null);
+    const [value, setValue] = useState<string>('');
+    const [showValue, setShowValue] = useState<number>(0);
     const [converted, setConverted] = useState<string[] | []>([]);
 
     const storage = useContext(StorageContext);
 
     const calculate = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        const { current } = input;
 
-        if (!current?.value) return;
-
-        const fValue = parseFloat(input.current?.value || '') || 0;
+        const fValue = parseFloat(value || '') || 0;
         const list = storage.get(unit.name);
 
         list.push({
@@ -37,6 +35,7 @@ function Convert({ unit, measures }: Props) {
             values.push(convert(fValue, measure));
         }
         setConverted(values);
+        setShowValue(fValue);
     };
 
     useEffect(() => {
@@ -53,17 +52,17 @@ function Convert({ unit, measures }: Props) {
                     <span>
                         {unit.name} ({unit.symbol})
                     </span>
-                    <input type='number' ref={input} />
+                    <input type='number' value={value} onChange={(e) => setValue(e.target.value)} />
                 </label>
                 <button type='submit' onClick={calculate} className='btn'>
                     Converter
                 </button>
             </form>
-            {input.current?.value && (
+            {converted.length > 0 && (
                 <Converted
                     unit={unit}
                     measures={measures}
-                    value={parseFloat(input.current?.value || '') || 0}
+                    value={showValue}
                     converted={converted}
                 />
             )}
