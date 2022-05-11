@@ -21,7 +21,7 @@ function Convert({ unit, measures }: Props) {
         const { current } = input;
 
         if (!current?.value) return;
-        
+
         const fValue = parseFloat(input.current?.value || '') || 0;
         const list = storage.get(unit.name);
 
@@ -42,39 +42,44 @@ function Convert({ unit, measures }: Props) {
     useEffect(() => {
         const list = storage.get(unit.name);
         if (list) return;
-    
+
         storage.init(unit.name, []);
-      }, []);
-    
+    }, []);
 
     return (
         <div className='flex items-end gap-3'>
             <form className='flex items-end gap-4'>
-                <label className="flex flex-col gap-1">
-                <span className="block text-sm font-medium text-slate-700">{unit.name}</span>
-                <input
-                    type='number'
-                    ref={input}
-                    className='px-3 py-1 rounded'
-                    />
-                    </label>
-                <button
-                    type='submit'
-                    onClick={calculate}
-                    className='px-2 py-1 bg-green-300 rounded hover:bg-green-400'
-                >
+                <label className='form'>
+                    <span>{unit.name} ({unit.symbol})</span>
+                    <input type='number' ref={input} />
+                </label>
+                <button type='submit' onClick={calculate} className='btn'>
                     Converter
                 </button>
             </form>
             <div className='flex justify-around w-full'>
-                {input.current?.value && <><span>{plural(parseFloat(input.current?.value || '0'), unit.name, true)}</span>
-                    <span>≈</span>
-                    {converted.map<React.ReactNode>((c, idx) => (
-                        <span key={idx}>
-                            {c ?? 0} {measures?.[idx]?.name}
+                {input.current?.value && (
+                    <>
+                        <span>
+                            {plural(
+                                parseFloat(input.current?.value || '0'),
+                                unit.name,
+                                true
+                            )} {' '}
+                            ({unit.symbol})
                         </span>
-                    )).reduce((prev, curr) => [prev, '≈', curr])}</>}
-                </div>
+                        <span>≈</span>
+                        {converted
+                            .map<React.ReactNode>((c, idx) => (
+                                <span key={idx}>
+                                    {c ?? 0} {measures?.[idx]?.name} {' '}
+                                    ({measures?.[idx]?.symbol})
+                                </span>
+                            ))
+                            .reduce((prev, curr) => [prev, '≈', curr])}
+                    </>
+                )}
+            </div>
         </div>
     );
 }

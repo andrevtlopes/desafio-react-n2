@@ -1,4 +1,3 @@
-import './App.css';
 import Container from './components/Container';
 import Convert from './components/Convert';
 import Header from './components/Header';
@@ -23,7 +22,7 @@ function App() {
                                 selectedClassName='tab-active'
                             >
                                 <tab.icon></tab.icon>
-                                {tab.name}
+                                {tab.unit.name}
                             </Tab>
                         ))}
                     </TabList>

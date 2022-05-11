@@ -28,7 +28,7 @@ const tabs: ITabs = {
         icon: FaGlassWhiskey,
         measures: [
             { name: 'Onças', symbol: 'fl oz', ratio: 33.814 },
-            { name: 'Galões',  symbol: 'fl oz', ratio: 0.264 },
+            { name: 'Galões',  symbol: 'gal lqd', ratio: 0.26417 },
     ]},
     meter: {
         unit: {
@@ -37,19 +37,19 @@ const tabs: ITabs = {
         },
         icon: FaRulerCombined,
         measures: [
-            { name: 'Milhas', symbol: 'fl oz', ratio: 0.00062137 },
-            { name: 'Pés', symbol: 'fl oz', ratio: 3.2808 },
+            { name: 'Milhas', symbol: 'mi', ratio: 0.00062137 },
+            { name: 'Pés', symbol: 'ft', ratio: 3.2808 },
         ]
     },
     kilo: {
         unit: {
             name: 'Quilo',
-            symbol: 'Kg'
+            symbol: 'kg'
         },
         icon: FaBalanceScale,
         measures: [
-            { name: 'Libras', symbol: 'fl oz', ratio: 2.2046 },
-            { name: 'Onças', symbol: 'fl oz', ratio: 35.274 },
+            { name: 'Libras', symbol: 'lb', ratio: 2.2046 },
+            { name: 'Onças', symbol: 'oz', ratio: 35.274 },
         ]
     },
     celsius: {
@@ -59,8 +59,8 @@ const tabs: ITabs = {
         },
         icon: FaTemperatureHigh,
         measures: [
-            { name: 'Kelvin', symbol: 'fl oz', formula: (celsius: number) => celsius + 273 },
-            { name: 'Fahrenheit', symbol: 'fl oz', formula: (celsius: number) => (1.8 * celsius) + 32 },
+            { name: 'Kelvin', symbol: 'K', formula: (celsius: number) => celsius + 273.15 },
+            { name: 'Fahrenheit', symbol: 'ºF', formula: (celsius: number) => (1.8 * celsius) + 32 },
         ]
     },
 };

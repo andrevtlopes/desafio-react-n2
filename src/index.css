@@ -18,6 +18,34 @@
     @apply flex flex-col justify-between w-full gap-2 p-4 text-center rounded-lg bg-slate-200;
 }
 
+.btn {
+    @apply px-2 py-1 bg-green-300 rounded hover:bg-green-400;
+}
+
+.form {
+    @apply flex flex-col gap-1;
+}
+
+.form > span {
+    @apply block text-sm font-medium text-slate-700;
+}
+
+.form > input {
+    @apply px-3 py-1 rounded;
+}
+
+.history-table {
+    @apply w-full border-collapse rounded table-auto;
+}
+
+.history-table > thead {
+    @apply text-white bg-slate-400;
+}
+
+.history-table > tbody > tr {
+    @apply odd:bg-white even:bg-slate-100;
+}
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
