@@ -10,7 +10,7 @@ function App() {
     const storage = useLocalStorage('local');
 
     return (
-        <div className='h-screen bg-slate-500'>
+        <div className='h-full min-h-screen bg-slate-500 align-center'>
             <Header title='Ferramenta de Conversão de Unidades de Medida' />
             <Container>
                 <Tabs>
@@ -27,7 +27,7 @@ function App() {
                         ))}
                     </TabList>
                     {Object.values(tabs).map((tab, idx) => (
-                        <TabPanel key={idx} className=''>
+                        <TabPanel key={idx}>
                             <StorageContext.Provider value={storage}>
                                 <Convert
                                     unit={tab.unit}

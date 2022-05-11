@@ -15,11 +15,11 @@
 }
 
 .react-tabs__tab-panel--selected {
-    @apply flex flex-col justify-between w-full gap-2 p-4 text-center rounded-lg bg-slate-200;
+    @apply flex flex-col justify-between w-full gap-2 p-4 text-center rounded-lg shadow-lg bg-slate-200;
 }
 
 .btn {
-    @apply px-2 py-1 bg-green-300 rounded hover:bg-green-400;
+    @apply px-2 py-1 bg-green-300 rounded shadow-sm outline-none hover:bg-green-400 hover:shadow-md focus:ring-green-500 focus:ring;
 }
 
 .form {
@@ -31,7 +31,7 @@
 }
 
 .form > input {
-    @apply px-3 py-1 rounded;
+    @apply px-3 py-1 rounded shadow-sm outline-none focus:ring focus:ring-slate-300;
 }
 
 .history-table {

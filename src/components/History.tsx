@@ -31,7 +31,7 @@ function History({ unit, measures }: Props) {
     }, [storage, unit.name]);
 
     return (
-        <div className='flex flex-col items-center justify-between w-full gap-2 p-4 pt-2 text-center rounded-lg bg-slate-300'>
+        <div className='flex flex-col items-center justify-between w-full gap-2 p-4 pt-2 text-center rounded-lg shadow-md bg-slate-300'>
             <h2 className='w-full'>Histórico</h2>
             <HistoryTable unit={unit} list={list} measures={measures} />
         </div>

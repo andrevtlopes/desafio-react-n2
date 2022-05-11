@@ -10,7 +10,7 @@ type Props = {
 
 export default function HistoryTable({ unit, list, measures }: Props) {
     return (
-        <table className='history-table'>
+        list.length ? <table className='history-table'>
             <thead>
                 <tr>
                     <td></td>
@@ -35,6 +35,6 @@ export default function HistoryTable({ unit, list, measures }: Props) {
                     </tr>
                 ))}
             </tbody>
-        </table>
+        </table> : <span className='p-1 text-sm rounded bg-slate-100'>Não há histórico ainda...</span>
     );
 }
