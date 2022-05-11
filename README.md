@@ -12,3 +12,7 @@ Para Quilo, converter e exibir o valor em Libras e Onças;\
 Para Graus, converter e exibir o valor em Kelvin e Fahrenheit;
 
 Deve ser persistido localmente (no browser) e exibido o histórico de conversões realizadas.
+
+O projeto está disponível para teste em:
+
+[AWS Amplify](https://main.d294k8bo2x0tmi.amplifyapp.com/)
