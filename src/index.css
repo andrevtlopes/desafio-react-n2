@@ -14,7 +14,7 @@
     @apply sticky top-0 z-50 flex items-center justify-center gap-2 py-2 rounded-b-lg shadow-xl lg:mx-4 bg-slate-200 text-slate-900;
 }
 
-.react-tabs__tab-panel--selected {
+.tab-panel {
     @apply flex flex-col justify-between w-full gap-2 p-4 text-center rounded-lg shadow-lg bg-slate-200;
 }
 
@@ -23,14 +23,18 @@
 }
 
 .form {
+    @apply flex items-end justify-center w-full gap-4;
+}
+
+.form-input {
     @apply flex flex-col gap-1;
 }
 
-.form > span {
+.form-input > span {
     @apply block text-sm font-medium text-slate-700;
 }
 
-.form > input {
+.form-input > input {
     @apply px-3 py-1 rounded shadow-sm outline-none focus:ring focus:ring-slate-300;
 }
 
@@ -44,6 +48,10 @@
 
 .history-table > tbody > tr {
     @apply odd:bg-white even:bg-slate-100;
+}
+
+.tag {
+    @apply w-full py-1 rounded-lg shadow-sm bg-slate-100;
 }
 
 body {
