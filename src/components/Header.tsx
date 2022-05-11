@@ -3,11 +3,7 @@ type Props = {
 };
 
 function Header({ title }: Props) {
-  return (
-    <header className="app-header">
-        {title}
-    </header>
-  )
+    return <header className='app-header'>{title}</header>;
 }
 
 export default Header;

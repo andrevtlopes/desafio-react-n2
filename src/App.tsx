@@ -1,47 +1,50 @@
-import React, { useState } from 'react';
 import './App.css';
 import Container from './components/Container';
+import Convert from './components/Convert';
 import Header from './components/Header';
+import History from './components/History';
+import useLocalStorage, { StorageContext } from './hooks/useLocalStorage';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import tabs from './types/tabs';
 
 function App() {
-  const [value, setValue] = useState(0);
-  const [ounces, setOunces] = useState(0);
-  const [gallons, setGallons] = useState(0);
+    const storage = useLocalStorage('local');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(parseFloat(e.target.value));
-  }
-
-  const calculate = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    
-    setOunces(value * 33.814);
-    setGallons(value / 3.785411784);
-  }
-
-  return (
-    <div className="h-screen bg-slate-400">
-      <Header title='Ferramenta de Conversão de Unidades de Medida' />
-      <Container>
-        <div className='flex flex-row justify-center'>
-          <div className='tab tab-active'>Litro</div>
-          <div className='tab'>Metro</div>
-          <div className='tab'>Quilo</div>
-          <div className='tab'>Graus Celcius</div>
+    return (
+        <div className='h-screen bg-slate-500'>
+            <Header title='Ferramenta de Conversão de Unidades de Medida' />
+            <Container>
+                <Tabs>
+                    <TabList className='flex justify-center'>
+                        {Object.values(tabs).map((tab, idx) => (
+                            <Tab
+                                key={idx}
+                                className='tab'
+                                selectedClassName='tab-active'
+                            >
+                                <tab.icon></tab.icon>
+                                {tab.name}
+                            </Tab>
+                        ))}
+                    </TabList>
+                    {Object.values(tabs).map((tab, idx) => (
+                        <TabPanel key={idx} className=''>
+                            <StorageContext.Provider value={storage}>
+                                <Convert
+                                    unit={tab.unit}
+                                    measures={tab.measures}
+                                />
+                                <History
+                                    unit={tab.unit}
+                                    measures={tab.measures}
+                                />
+                            </StorageContext.Provider>
+                        </TabPanel>
+                    ))}
+                </Tabs>
+            </Container>
         </div>
-        <div className='flex items-center justify-between p-4 rounded-lg bg-slate-200'>
-          <form className='flex gap-4'>
-          <input type='number' name='value' placeholder='Litro' className='px-3 py-1 rounded' onChange={handleChange}></input>
-          <button type="submit" onClick={calculate} className='px-2 py-1 bg-green-300 rounded hover:bg-green-400' >
-            Submit
-            </button>
-          </form>
-          <span className=''>{ounces?.toFixed(4) ?? ounces} Onças</span>
-          <span className=''>{gallons?.toFixed(4) ?? gallons} Galões</span>
-        </div>
-      </Container>
-    </div>
-  );
+    );
 }
 
 export default App;
