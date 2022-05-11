@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import tabs, { MeasureTab } from './types/tabs';
 import TabPanel from './components/TabPanel';
 import NoMatch from './components/NoMatch';
@@ -16,6 +16,7 @@ root.render(
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<App />}>
+                    <Route path='/' element={<Navigate to='liter' replace />} />
                     {Object.entries(tabs).map(([key, value], idx) => (
                         <Route
                             key={idx}

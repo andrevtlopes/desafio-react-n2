@@ -1,8 +1,7 @@
 import Container from './components/Container';
 import Header from './components/Header';
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import tabs from './types/tabs';
-import Tab from './components/Tab';
 
 function App() {
     return (
@@ -11,10 +10,16 @@ function App() {
             <Container>
                 <div className='flex justify-center'>
                     {Object.entries(tabs).map(([key, value], idx) => (
-                        <Tab to={key} key={idx}>
+                        <NavLink
+                            className={({ isActive }) =>
+                                isActive ? 'tab tab-active' : 'tab'
+                            }
+                            to={key}
+                            key={idx}
+                        >
                             <value.icon />
                             {value.unit.name}
-                        </Tab>
+                        </NavLink>
                     ))}
                 </div>
                 <Outlet />
